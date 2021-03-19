@@ -157,4 +157,21 @@ service.createTargetedOffer = (req, res)=>{
     
 // },interval);
 
+
+// const args: any = {
+//     TableName: tableName,
+//     Key: { [index.partitionKey]: id }
+//   };
+
+//   if (sortKey) {
+//     args.Key[index.sortKey] = sortKey;
+//   }
+
+//   try {
+//     return await this.ddb.get(args).promise();
+//   } catch (error) {
+//     ApiLogger.error('GetByID error', error);
+//     throw error;
+//   }
+
 export default service;
