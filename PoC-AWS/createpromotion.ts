@@ -2,9 +2,9 @@ const AWS = require("aws-sdk")
 export const handler = async (event: any, context: any, callback: any) => {
 
     let awsConfig = {
-        "region": "us-east-1",
-        "endpoint": "https://dynamodb.us-east-1.amazonaws.com",
-        "accessKeyId": "AKIA5PMDQWVB5VR4QC22", "secretAccessKey": "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"
+        "region": process.env.REGION,
+        // "endpoint": process.env.END_POINT,
+        "accessKeyId": process.env.ACCESS_KEY_ID, "secretAccessKey": process.env.SECRET_KEY
     }
     AWS.config.update({ awsConfig });
     //create the dunamodb service object
@@ -12,6 +12,8 @@ export const handler = async (event: any, context: any, callback: any) => {
     const documentClient = new AWS.DynamoDB.DocumentClient();
     const promoId = Math.round(Math.random()*1000000);
     const jobStartTime = Math.floor(new Date().getTime()/1000.0);
+    const date = new Date();
+    const currTime = date.getTime();
 
    const params:any = {
        TableName:"promotionoffer",
@@ -21,8 +23,10 @@ export const handler = async (event: any, context: any, callback: any) => {
            minAge:20,
            maxAge:50,
            gender:"MALE",
+           jobStatus:"COMPLETED",
            jobStartTimeEpoch:jobStartTime,
-           jobEndTimeEpoch:254512586
+           jobEndTimeEpoch:254512586,
+           currentTime:currTime
         }
    }
    try{

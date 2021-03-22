@@ -1,0 +1,4 @@
+https://www.alexdebrie.com/posts/dynamodb-filter-expressions/
+
+https://aws.amazon.com/blogs/database/using-sort-keys-to-organize-data-in-amazon-dynamodb/
+
