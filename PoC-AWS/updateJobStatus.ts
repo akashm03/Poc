@@ -8,24 +8,22 @@ export const handler = async (event: any, context: any, callback: any) => {
 
     AWS.config.update({ awsConfig });
 
-    let date = new Date();
-    let currTime = date.getTime();
-    // & Key('jobStartTimeEpoch').lt(currentTime),
     //create the dunamodb service object
     const ddb = new AWS.DynamoDB({ apiVersion: "2012-10-08" });
     const documentClient = new AWS.DynamoDB.DocumentClient();
     try{
     const params: any = {
-        TableName: "promotionoffer",
-        limit:3,
-        ExpressionAttributeValues:{
-            ':js':{'s':'PROCESSING'},
+        TableName: "targetedoffer",
+        Key:{
+            targetId: 127368
         },
-        UpdateExpression: 'set jobStatus = :js',
-        KeyConditionExpression: ':js AND :jobStartTimeEpoch <= :currentTime', 
-        
+        UpdateExpression: "set jobStatus = :jobS",
+        ExpressionAttributeValues:{
+            ":jobs": "COMPLETED"
+        },
+        ReturnValues:"UPDATED_NEW"
     }
-    let result = await documentClient.query(params).promise()
+    let result = await documentClient.get(params).promise()
     console.log(result);
     ;
     }catch(error){

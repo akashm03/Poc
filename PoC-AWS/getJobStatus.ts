@@ -18,17 +18,14 @@ export const handler = async (event: any, context: any, callback: any) => {
     try{
     const params: any = {
         TableName: "promotionoffer",
+        FilterExpression: "jobStartTimeEpoch <= :currentTime and jobStatus = :jobS",
         ExpressionAttributeValues:{
-            ':jobStatus':'COMPLETED',
-            // ':jobStartTimeEpoch': 1616398116,
-            ':currentTime':{'n':currTime}
+            ':jobS':'PENDING',
+            ':currentTime': currTime
         },
-        FilterExpression: 'jobStatus= :jobStatus AND jobStartTimeEpoch <= :currentTime',
-        KeyConditionExpression: 'jobStatus= :js'
-        // AND :jobStartTimeEpoch <= :currentTime' 
         
     }
-    let result = await ddb.query(params).promise()
+    let result = await documentClient.scan(params).promise()
     console.log(result);
     ;
     }catch(error){

@@ -19,11 +19,11 @@ export const handler = async (event: any, context: any, callback: any) => {
        TableName:"promotionoffer",
        Item: { 
            promotionId: promoId,
-           name:"Suraj",
-           minAge:20,
-           maxAge:50,
+           name:"Shantnu",
+           minAge:23,
+           maxAge:49,
            gender:"MALE",
-           jobStatus:"COMPLETED",
+           jobStatus:"PENDING",
            jobStartTimeEpoch:jobStartTime,
            jobEndTimeEpoch:254512586,
            currentTime:currTime
