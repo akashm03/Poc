@@ -23,7 +23,6 @@ export const handler = async (event: any, context: any, callback: any) => {
             ':jobS':'PENDING',
             ':currentTime': currTime
         },
-        
     }
     let result = await documentClient.scan(params).promise()
     console.log(result);

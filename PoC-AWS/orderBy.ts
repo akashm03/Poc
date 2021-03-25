@@ -16,17 +16,17 @@ export const handler = async (event: any, context: any, callback: any) => {
         TableName: "promotionoffer",
         Limit:3,
         //ScanIndexForward: true  //if true = ascending and false = descending
-        // UpdateExpression: "set jobStatus = :jobS",
-        // ExpressionAttributeValues: {":jobS":"PROCESSING"},
-        // ReturnValues:"UPDATED_NEW"
-
+        UpdateExpression: "set jobStatus = :jobS",
+        ExpressionAttributeValues: {
+            ":jobS":"PROCESSING"
+        },
+        ReturnValues:"ALL_NEW"
     }
-    let result = await documentClient.scan(params).promise()
+    let result = await documentClient.update(params).promise()
     console.log(result);
     ;
     }catch(error){
         console.log(error);
-        
     }
 };
 

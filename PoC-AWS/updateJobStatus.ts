@@ -19,11 +19,11 @@ export const handler = async (event: any, context: any, callback: any) => {
         },
         UpdateExpression: "set jobStatus = :jobS",
         ExpressionAttributeValues:{
-            ":jobs": "COMPLETED"
+            ":jobS": "COMPLETED"
         },
-        ReturnValues:"UPDATED_NEW"
+        ReturnValues:"ALL_NEW"
     }
-    let result = await documentClient.get(params).promise()
+    let result = await documentClient.update(params).promise()
     console.log(result);
     ;
     }catch(error){
